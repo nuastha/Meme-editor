@@ -65,7 +65,7 @@ const Canvas = () => {
       ref={canvasRef}
       width={600}
       height={500}
-      className="border-2 border-gray-300 bg-white"
+      className="border-2 border-gray-300 bg-white rounded-lg shadow-md"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
