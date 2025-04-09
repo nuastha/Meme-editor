@@ -96,7 +96,7 @@ export const CanvasProvider = ({ children }) => {
         rotation: 0,
         isDragging: false,
         size: 16,
-        color: "black",
+        color: "#000000",
       },
     ]);
   };
