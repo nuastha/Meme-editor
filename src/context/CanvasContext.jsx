@@ -80,6 +80,10 @@ export const CanvasProvider = ({ children }) => {
     );
   };
 
+  const removeText = (id) => {
+    setTexts((prevTexts) => prevTexts.filter((text) => text.id !== id));
+  };
+
   const addNewText = () => {
     const newId = texts.length + 1;
     setTexts((prev) => [
@@ -117,6 +121,7 @@ export const CanvasProvider = ({ children }) => {
         drawCanvas,
         activeTextId,
         setActiveTextId,
+        removeText,
       }}
     >
       {children}
