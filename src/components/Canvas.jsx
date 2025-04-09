@@ -4,6 +4,11 @@ const Canvas = () => {
   const { canvasRef, updateText, texts, setActiveTextId, activeTextId } =
     useCanvas();
 
+  /**
+   * Gets the mouse position relative to the canvas element.
+   * @param {MouseEvent} e The mouse event.
+   * @returns {{ offsetX: number, offsetY: number }} The mouse position relative to the canvas element.
+   */
   const getMousePos = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();
     return {
@@ -12,6 +17,13 @@ const Canvas = () => {
     };
   };
 
+  /**
+   * Handles the mousedown event on the canvas.
+   * Checks if the click is within any of the text elements.
+   * If the click is within a text element, the text element is set as the active text element
+   * and the dragging state is set to true.
+   * @param {MouseEvent} e The mouse event.
+   */
   const handleMouseDown = (e) => {
     const { offsetX, offsetY } = getMousePos(e);
     const ctx = canvasRef.current.getContext("2d");
@@ -34,6 +46,13 @@ const Canvas = () => {
     }
   };
 
+  /**
+   * Handles the mousemove event on the canvas.
+   * If the activeTextId is set, this function updates the x and y coordinates of the text element
+   * with the id of activeTextId to the mouse position.
+   * The text element is also clamped to be within the boundaries of the canvas.
+   * @param {MouseEvent} e The mouse event.
+   */
   const handleMouseMove = (e) => {
     if (activeTextId === null) return;
 
@@ -56,6 +75,12 @@ const Canvas = () => {
     updateText(activeTextId, { x: newX, y: newY });
   };
 
+  /**
+   * Handles the mouseup event on the canvas.
+   * If the activeTextId is set, this function sets the dragging state of the text element
+   * with the id of activeTextId to false and sets activeTextId to null.
+   * This means that the text element is no longer being dragged.
+   */
   const handleMouseUp = () => {
     if (activeTextId !== null) {
       updateText(activeTextId, { isDragging: false });
