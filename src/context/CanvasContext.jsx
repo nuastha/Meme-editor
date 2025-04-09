@@ -109,6 +109,7 @@ export const CanvasProvider = ({ children }) => {
     const img = new Image();
     img.src = URL.createObjectURL(file);
     img.onload = () => setImage(img);
+    URL.revokeObjectURL(img.src);
   };
 
   return (
