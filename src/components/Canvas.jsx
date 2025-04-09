@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useCanvas } from "../context/CanvasContext";
 
 const Canvas = () => {
@@ -6,14 +5,9 @@ const Canvas = () => {
     canvasRef,
     updateText,
     texts,
-    drawCanvas,
     setActiveTextId,
     activeTextId,
   } = useCanvas();
-
-  useEffect(() => {
-    drawCanvas();
-  }, [texts]);
 
   const getMousePos = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();
