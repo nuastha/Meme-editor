@@ -28,7 +28,6 @@ const Canvas = () => {
     const ctx = canvasRef.current.getContext("2d");
 
     for (const textObj of texts) {
-      ctx.font = "30px Arial";
       const textWidth = ctx.measureText(textObj.text).width;
       const textHeight = 40;
 
