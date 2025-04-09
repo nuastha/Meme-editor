@@ -36,49 +36,75 @@ export const SettingsPanel = () => {
         <h2 className="text-lg font-semibold mb-4">Text Settings</h2>
         <div>
           {texts.map((t) => (
-            <div key={t.id} className="flex gap-2 items-center">
-              <span className="text-sm font-medium">{t.id}</span>
-              <div>
-                <input
-                  type="text"
-                  value={t.text}
-                  onChange={(e) => updateText(t.id, { text: e.target.value })}
-                  className="px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter text"
-                />
+            <div key={t.id} className="flex gap-2 items-start flex-col mb-4">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium bg-amber-300 px-[10px] py-1 rounded-full">
+                    {t.id}
+                  </span>
+                  <label htmlFor="text" className="text-teal-500 capitalize">
+                    text input
+                  </label>
+                  <input
+                    type="text"
+                    value={t.text}
+                    onChange={(e) => updateText(t.id, { text: e.target.value })}
+                    className="px-2 py-1 border border-gray-300 rounded text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter text"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <label
+                    htmlFor="fontSize"
+                    className="text-teal-500 capitalize"
+                  >
+                    font size
+                  </label>
+                  <input
+                    type="range"
+                    min="10"
+                    max="100"
+                    value={t.size}
+                    id="size"
+                    onChange={(e) => updateText(t.id, { size: parseInt(e.target.value) })}
+                  />
+                  <span>{t.size}px</span>
+                </div>
               </div>
-              <div>
-                <label htmlFor="fontSize">font size</label>
-                <input
-                  type="range"
-                  min="10"
-                  max="100"
-                  value={t.fontSize}
-                  onChange={(e) =>
-                    updateText(t.id, { fontSize: parseInt(e.target.value) })
-                  }
-                />
-                <span>{t.fontSize}px</span>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <label htmlFor="color" className="text-teal-500 capitalize">
+                    text color
+                  </label>
+                  <input
+                    type="color"
+                    value={t.color}
+                    className="w-10 h-8 border border-gray-300 rounded"
+                    id="color"
+                    onChange={(e) =>
+                      updateText(t.id, { color: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <label
+                    htmlFor="rotation"
+                    className="text-teal-500 capitalize"
+                  >
+                    rotation
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="360"
+                    value={t.rotation}
+                    onChange={(e) =>
+                      updateText(t.id, { rotation: parseInt(e.target.value) })
+                    }
+                  />
+                  <span>{t.rotation}°</span>
+                </div>
               </div>
-              <div>
-                <label htmlFor="color">text color</label>
-                <input
-                  type="color"
-                  value={t.color}
-                  onChange={(e) => updateText(t.id, { color: e.target.value })}
-                />
-              </div>
-
-              <input
-                type="range"
-                min="0"
-                max="360"
-                value={t.rotation}
-                onChange={(e) =>
-                  updateText(t.id, { rotation: parseInt(e.target.value) })
-                }
-              />
-              <span>{t.rotation}°</span>
             </div>
           ))}
         </div>
