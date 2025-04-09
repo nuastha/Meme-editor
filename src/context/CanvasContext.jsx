@@ -81,7 +81,12 @@ export const CanvasProvider = ({ children }) => {
   };
 
   const removeText = (id) => {
-    setTexts((prevTexts) => prevTexts.filter((text) => text.id !== id));
+    setTexts((prevTexts) => {
+      const updated = prevTexts.filter((text) => text.id !== id);
+      return updated;
+    });
+    // Force canvas redraw
+    setTimeout(drawCanvas, 0);
   };
 
   const addNewText = () => {
