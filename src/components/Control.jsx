@@ -11,11 +11,22 @@ export const SettingsPanel = () => {
     removeText,
   } = useCanvas();
 
+/**
+ * Handles image upload from input field.
+ * When an image is selected from the input field, this function is called.
+ * It takes the selected image file and passes it to the setImageFromFile function to set the image on the canvas.
+ * @param {Event} e The event from the input field, which contains the image file in the target.files array.
+ */
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) setImageFromFile(file);
   };
 
+/**
+ * Saves the current canvas image as a PNG file.
+ * Creates a link with the download attribute set to "edited-image.png"
+ * and clicks it to download the image.
+ */
   const handleSaveImage = () => {
     const canvas = canvasRef.current;
     const imageURI = canvas.toDataURL("image/png");
