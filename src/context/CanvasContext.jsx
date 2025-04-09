@@ -15,6 +15,8 @@ export const CanvasProvider = ({ children }) => {
       y: 50,
       rotation: 0,
       isDragging: false,
+      color: "#000000",
+      size: 16,
     },
   ]);
   const [activeTextId, setActiveTextId] = useState(null);
@@ -60,29 +62,13 @@ export const CanvasProvider = ({ children }) => {
     );
   };
 
-  const drawText = (ctx, { text, x, y, rotation }) => {
+  const drawText = (ctx, { text, x, y, rotation, size, color }) => {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate((rotation * Math.PI) / 180);
 
-    ctx.font = "30px Arial";
-    const textWidth = ctx.measureText(text).width + 20;
-    const textHeight = 40;
-
-    const gradient = ctx.createLinearGradient(
-      12,
-      textHeight / 2,
-      textHeight / 2,
-      12
-    );
-    gradient.addColorStop(0.1, "cyan");
-    gradient.addColorStop(0.5, "blue");
-    gradient.addColorStop(0.8, "green");
-
-    ctx.strokeStyle = gradient;
-    ctx.lineWidth = 2;
-    ctx.strokeRect(-textWidth / 2, -textHeight / 2, textWidth, textHeight);
-    ctx.fillStyle = "black";
+    ctx.font = `${size}px Arial`;
+    ctx.fillStyle = color;
     ctx.textAlign = "center";
     ctx.fillText(text, 0, 10);
     ctx.restore();
@@ -105,6 +91,8 @@ export const CanvasProvider = ({ children }) => {
         y: 100,
         rotation: 0,
         isDragging: false,
+        size: 16,
+        color: "black",
       },
     ]);
   };
